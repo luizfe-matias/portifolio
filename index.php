@@ -240,7 +240,7 @@ require_once('config.php');
                         </div>
 
                         <div class="row skills-content">
-
+                        <h1>oi</h1>
                             <div class="col-lg-6">
 
                                 <div class="progress">
