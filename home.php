@@ -33,14 +33,14 @@ require_once('config.php');
 
     <link href="assets/css/style.css" rel="stylesheet">
 
-    </head>
+</head>
 
 <body>
 
     <?php
-    $pdo_statement = $pdo->prepare("select * from users");
+    $pdo_statement = $pdo->prepare("select username from users");
     $pdo_statement->execute();
-    $result = $pdo_statement->fetchAll();
+    $result = $pdo_statement->fetch();
     ?>
     <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
     <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
@@ -50,11 +50,11 @@ require_once('config.php');
         <nav id="navbar" class="navbar nav-menu">
             <ul>
                 <li><a href="register.php" class="nav-link scrollto active"><i class="bx bx-envelope"></i><span>Registrar Portifólio Profissional</span></a></li>
-                <li><a href="register-fatos.php" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Registrar Fatos Profissionais</span></a></li>                
+                <li><a href="register-fatos.php" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Registrar Fatos Profissionais</span></a></li>
                 <li><a href="register-habilidades.php" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Registrar Habilidades Profissionais</span></a></li>
-                 <li><a href="index.php" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Portifólio</span></a></li>
-                
+                <li><a href="index.php" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Portifólio</span></a></li>
+
             </ul>
         </nav>
-
+        <h2><?php echo $result['username'] ?></h2>
     </header><!-- End Header -->
