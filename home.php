@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once('config.php');
 
 ?>
@@ -38,10 +40,11 @@ require_once('config.php');
 <body>
 
     <?php
-    $pdo_statement = $pdo->prepare("select username from users");
-    $pdo_statement->execute();
-    $result = $pdo_statement->fetch();
+    $pdo_statement = $pdo->prepare("select * from users where id_user = ?");
+    $result = $pdo_statement->execute([$_SESSION["id"]]);
+    // $result = $pdo_statement->fetch(PDO::FETCH_ASSOC);
     ?>
+    
     <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
     <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
     <!-- ======= Header ======= -->
@@ -56,5 +59,10 @@ require_once('config.php');
 
             </ul>
         </nav>
-        <h2><?php echo $result['username'] ?></h2>
-    </header><!-- End Header -->
+        <h2><?php echo $result[0]['username'] ?></h2>
+    </header>
+    <!-- End Header -->
+
+</body>
+
+</html>
