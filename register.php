@@ -1,29 +1,96 @@
 <?php
 
-if(!empty($_POST["add_user"])){
+if (!empty($_POST["add_user"])) {
 
-require_once("config.php");
+    require_once("config.php");
 
-$sql = "insert into users (nome, cidade, nascimento, genero, email, telefone, grau, idade, resumo) values(:nome, :cidade, :nascimento, :genero, :email, :telefone, :grau,
+    $sql = "insert into users (nome, cidade, nascimento, genero, email, telefone, grau, idade, resumo) values(:nome, :cidade, :nascimento, :genero, :email, :telefone, :grau,
 :idade, :resumo)";
 
-$pdo_statment = $pdo->prepare($sql);
-$result = $pdo_statment->execute(array(
-    ":nome"=>$_POST["nome"],
-    ":cidade"=>$_POST["cidade"],
-    ":nascimento"=>$_POST["nascimento"],
-    ":genero"=>$_POST["genero"],
-    ":email"=>$_POST["email"],
-    ":telefone"=>$_POST["telefone"],
-    ":grau"=>$_POST["grau"],
-    ":idade"=>$_POST["idade"],
-    ":resumo"=>$_POST["resumo"]
-));
+    $pdo_statment = $pdo->prepare($sql);
+    $result = $pdo_statment->execute(array(
+        ":nome" => $_POST["nome"],
+        ":cidade" => $_POST["cidade"],
+        ":nascimento" => $_POST["nascimento"],
+        ":genero" => $_POST["genero"],
+        ":email" => $_POST["email"],
+        ":telefone" => $_POST["telefone"],
+        ":grau" => $_POST["grau"],
+        ":idade" => $_POST["idade"],
+        ":resumo" => $_POST["resumo"]
+    ));
 
-echo $result;
-if(!empty($result)){
-    header("location:home.php");
-}
+    $username = $password = $confirm_password = "";
+    $username_err = $password_err = $confirm_password_err = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+
+        if (empty(trim($_POST["username"]))) {
+            $username_err = "Por favor coloque um nome de usuario";
+        } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST['username']))) {
+            $username_err = "O nome de usuario pde conter apenas letras, numeros e sublinhados";
+        } else {
+            $sql = "select id_user from users where username = :username";
+            if ($stmt = $pdo->prepare(($sql))) {
+                $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+
+                $param_username = trim($_POST["username"]);
+
+                if ($stmt->execute()) {
+                    if ($stmt->rowCount() == 1) {
+                        $username_err = "Este nome de usuario já esta em uso";
+                    } else {
+                        $username = trim($_POST["username"]);
+                    }
+                } else {
+                    echo "Ops! algo deu errado. Por favor tente novamente mais tarde.";
+                }
+                unset($stmt);
+            }
+        }
+
+
+        if (empty(trim($_POST["password"]))) {
+            $password_err = "Por favor insira uma senha.";
+        } elseif (strlen($_POST["password"]) < 6) {
+            $password_err = "A senha deve ter pelo menos 6 carateres.";
+        } else {
+            $password = trim($_POST["password"]);
+        }
+
+        if (empty(trim($_POST["confirm_password"]))) {
+            $confirm_password_err = "Por favor, confirme a senha";
+        } else {
+            $confirm_password = trim($_POST["confirm_password"]);
+            if (empty($password_err) && ($password != $confirm_password)) {
+                $confirm_password_err = "As senhas estão difrentes.";
+            }
+        }
+        if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+            $sql = "insert into users (username, password) values (:username, :password)";
+
+            if ($stmt = $pdo->prepare($sql)) {
+                $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+                $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+
+                $param_username = $username;
+                $param_password = password_hash($password, PASSWORD_DEFAULT);
+
+                if ($stmt->execute()) {
+                    header("location:login.php");
+                } else {
+                    echo "Ops! Algo deu errado. Tente mais tarde";
+                }
+                unset($stmt);
+            }
+        }
+        unset($pdo);
+    }
+
+    echo $result;
+    if (!empty($result)) {
+        header("location:home.php");
+    }
 }
 ?>
 
@@ -88,7 +155,7 @@ if(!empty($result)){
                                 </div>
                             </div>
                             <div class="col-2">
-                            <div class="input-group">
+                                <div class="input-group">
                                     <label class="label">Genero</label>
                                     <div class="input-group-icon">
                                         <input class="input--style-4 js-datepicker" type="text" name="genero">
@@ -126,16 +193,30 @@ if(!empty($result)){
                             </div>
                         </div>
                         <div class="row row-space">
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Resumo</label>
+                                <input class="input--style-4" type="text" name="resumo">
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Resumo</label>
-                                    <input class="input--style-4" type="text" name="resumo">
+                                    <label class="label">Senha</label>
+                                    <input class="input--style-4" type="password" name="password">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Confirme sua Senha</label>
+                                    <input class="input--style-4" type="password" name="confirm_password">
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- <div class="input-group">
+                </div>
+
+                <!-- <div class="input-group">
                             <label class="label">Subject</label>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <select name="subject">
@@ -147,13 +228,13 @@ if(!empty($result)){
                                 <div class="select-dropdown"></div>
                             </div>
                         </div> -->
-                        <div class="p-t-15">
-                            <input class="btn btn--radius-2 btn--blue butao" type="submit" name="add_user">
-                        </div>
-                    </form>
+                <div class="p-t-15">
+                    <input class="btn btn--radius-2 btn--blue butao" type="submit" name="add_user">
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Jquery JS-->
