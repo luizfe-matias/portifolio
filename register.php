@@ -4,8 +4,8 @@ if (!empty($_POST["add_user"])) {
 
     require_once("config.php");
 
-    $sql = "insert into users (nome, cidade, nascimento, genero, email, telefone, grau, idade, resumo) values(:nome, :cidade, :nascimento, :genero, :email, :telefone, :grau,
-:idade, :resumo)";
+    $sql = "insert into users (nome, cidade, nascimento, genero, email, telefone, grau, profissao, idade, password) values(:nome, :cidade, :nascimento, :genero, :email, :telefone, :grau,
+:profissao, :idade, :password)";
 
     $pdo_statment = $pdo->prepare($sql);
     $result = $pdo_statment->execute(array(
@@ -17,7 +17,8 @@ if (!empty($_POST["add_user"])) {
         ":telefone" => $_POST["telefone"],
         ":grau" => $_POST["grau"],
         ":idade" => $_POST["idade"],
-        ":resumo" => $_POST["resumo"]
+        ":password" => $_POST["password"],
+        ":profissao" => $_POST["profissao"]
     ));
 
     $username = $password = $confirm_password = "";
@@ -187,6 +188,12 @@ if (!empty($_POST["add_user"])) {
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
+                                    <label class="label">Profissão</label>
+                                    <input class="input--style-4" type="text" name="profissao">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
                                     <label class="label">Idade</label>
                                     <input class="input--style-4" type="text" name="idade">
                                 </div>
@@ -194,12 +201,7 @@ if (!empty($_POST["add_user"])) {
                         </div>
                         <div class="row row-space">
                         </div>
-                        <div class="col-6">
-                            <div class="input-group">
-                                <label class="label">Resumo</label>
-                                <input class="input--style-4" type="text" name="resumo">
-                            </div>
-                        </div>
+                        
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">

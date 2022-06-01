@@ -55,6 +55,7 @@ require_once('config.php');
                 <li><a href="#facts" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Fatos</span></a></li>
                 <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resumo</span></a></li>
                 <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="#testimonials" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Testemunhas</span></a></li>
 
                 <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contato</span></a></li>
                 <!-- <li><a href="register.php" class="nav-link scrollto"><i class="bx bx-envelope"></i><span>Registrar Portifólio</span></a></li> -->
@@ -105,7 +106,7 @@ require_once('config.php');
                         <img src="assets/img/Eu.jpg" class="img-fluid profile" alt="">
                     </div>
                     <div class="col-lg-8 pt-4 pt-lg-0 content">
-                        <h3>UI/UX Desenvolverdor Web &amp; Fotografo.</h3>
+                        <h3><?php echo $row['profissao'] ?></h3>
                         </br>
                         <!-- <p class="fst-italic">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -125,7 +126,7 @@ require_once('config.php');
                                             <li><i class="bi bi-chevron-right"></i> <strong>Cidade:</strong> <span><?php echo $row['cidade'] ?></span></li>
                                             <li><i class="bi bi-chevron-right"></i> <strong>Genero:</strong> <span><?php echo $row['genero'] ?></span></li>
 
-                                            q <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><?php echo $row['nascimento'] ?><span></span></li>
+                                            <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><?php echo $row['nascimento'] ?><span></span></li>
 
                                 </ul>
 
@@ -142,9 +143,7 @@ require_once('config.php');
 
                             </div>
                         </div>
-                        <p>
-                            <?php echo $row['resumo'] ?>
-                        </p>
+
                 <?php
                                         }
                                     }
@@ -301,6 +300,11 @@ require_once('config.php');
 
         <!-- ======= Resume Section ======= -->
         <section id="resume" class="resume">
+            <?php
+            $pdo_statement = $pdo->prepare("select * from users");
+            $pdo_statement->execute();
+            $result = $pdo_statement->fetchAll();
+            ?>
             <div class="container" data-aos="fade-up">
                 <?php
 
@@ -320,13 +324,13 @@ require_once('config.php');
                                     <h4><?php echo $res2['nome']; ?></h4>
                                     <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
                                     <ul>
-                                        <li>Portland par 127,Orlando, FL</li>
-                                        <li><?php echo $res2['telefone'] ;?></li>
-                                        <li><?php echo $res2['email'] ;?></li>
+                                        <li><?php echo $res2['cidade'] ?></li>
+                                        <li><?php echo $res2['telefone']; ?></li>
+                                        <li><?php echo $res2['email']; ?></li>
                                     </ul>
                                 </div>
 
-                                <h3 class="resume-title">Education</h3>
+                                <h3 class="resume-title">Educação</h3>
                                 <div class="resume-item">
                                     <h4>Master of Fine Arts &amp; Graphic Design</h4>
                                     <h5>2015 - 2016</h5>
@@ -408,7 +412,7 @@ require_once('config.php');
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-4 col-md-6 portfolio-item filter-other">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/motor.jpeg" class="img-fluid" alt="">
@@ -478,7 +482,7 @@ require_once('config.php');
                     </div>
 
 
-                    
+
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-landscape">
                         <div class="portfolio-wrap">
@@ -590,7 +594,7 @@ require_once('config.php');
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>Testimonials</h2>
+                    <h2>Testemunhas</h2>
                 </div>
 
                 <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -598,9 +602,9 @@ require_once('config.php');
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
+                                <img src="assets/img/testimonials/Hiago.jpg" class="testimonial-img" alt="">
+                                <h3>Hiago Zolin</h3>
+                                <h4>Dba</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                                     Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
@@ -611,8 +615,8 @@ require_once('config.php');
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                                <h3>Sara Wilsson</h3>
+                                <img src="assets/img/testimonials/Tiago.jpg" class="testimonial-img" alt="">
+                                <h3>Tiago</h3>
                                 <h4>Designer</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -624,8 +628,8 @@ require_once('config.php');
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                                <h3>Jena Karlis</h3>
+                                <img src="assets/img/testimonials/Gabriel.jpg" class="testimonial-img" alt="">
+                                <h3>Gabriel Moreira</h3>
                                 <h4>Store Owner</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -637,9 +641,9 @@ require_once('config.php');
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
+                                <img src="assets/img/testimonials/Ronaldo.jpg" class="testimonial-img" alt="">
+                                <h3>Ronaldo Pires</h3>
+                                <h4>Full Stack Developer</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                                     Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
@@ -650,9 +654,9 @@ require_once('config.php');
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
+                                <img src="assets/img/testimonials/Romario.jpg" class="testimonial-img" alt="">
+                                <h3>Romario Pires</h3>
+                                <h4>Ceo Geminis</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                                     Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
@@ -672,63 +676,72 @@ require_once('config.php');
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
 
-                <div class="section-title">
-                    <h2>Contact</h2>
-                </div>
+                <?php
 
-                <div class="row mt-1">
+                if (!empty($result)) {
+                    foreach ($result as $res3) {;
+                ?>
 
-                    <div class="col-lg-4">
-                        <div class="info">
-                            <div class="address">
-                                <i class="bi bi-geo-alt"></i>
-                                <h4>Location:</h4>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                        <div class="section-title">
+                            <h2>Contato</h2>
+                        </div>
+
+                        <div class="row mt-1">
+
+                            <div class="col-lg-4">
+                                <div class="info">
+                                    <div class="address">
+                                        <i class="bi bi-geo-alt"></i>
+                                        <h4>Localização:</h4>
+                                        <p><?php echo $res3['cidade']; ?></p>
+                                    </div>
+
+                                    <div class="email">
+                                        <i class="bi bi-envelope"></i>
+                                        <h4>Email:</h4>
+                                        <p><?php echo $res3['email'] ?></p>
+                                    </div>
+
+                                    <div class="phone">
+                                        <i class="bi bi-phone"></i>
+                                        <h4>Telefone:</h4>
+                                        <p><?php echo $res3['email'] ?></p>
+                                    </div>
+
+                                </div>
+
                             </div>
 
-                            <div class="email">
-                                <i class="bi bi-envelope"></i>
-                                <h4>Email:</h4>
-                                <p>info@example.com</p>
-                            </div>
+                            <div class="col-lg-8 mt-5 mt-lg-0">
 
-                            <div class="phone">
-                                <i class="bi bi-phone"></i>
-                                <h4>Call:</h4>
-                                <p>+1 5589 55488 55s</p>
+                                <form action="" method="POST" role="form" class="php-email-form">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <input type="text" name="nome-contato" class="form-control" placeholder="Seu Nome" required>
+                                        </div>
+                                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                                            <input type="email" class="form-control" name="email-contato" placeholder="Seu Email" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mt-3">
+                                        <textarea class="form-control" name="message" rows="5" placeholder="Mensagem" required></textarea>
+                                    </div>
+                                    <div class="my-3">
+                                        <div class="loading">Loading</div>
+                                        <div class="error-message"></div>
+                                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                                    </div>
+                                    <div class="text-center"><button type="submit">Enviar Mensagem </button></div>
+                                </form>
+
                             </div>
 
                         </div>
-
-                    </div>
-
-                    <div class="col-lg-8 mt-5 mt-lg-0">
-
-                        <form action="forms/contact.php" method="POST" role="form" class="php-email-form">
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Seu Nome" required>
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Mensagem" required></textarea>
-                            </div>
-                            <div class="my-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Enviar Mensagem </button></div>
-                        </form>
-
-                    </div>
-
-                </div>
-
+                <?php
+                    }
+                }
+                ?>
             </div>
         </section><!-- End Contact Section -->
 
