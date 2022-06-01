@@ -4,12 +4,22 @@ if (!empty($_POST["add_resumo"])) {
 
     require_once("config.php");
 
-    $sql = "insert into habilidades (nome_habilidades, nivel) values(:nome_habilidades, :nivel)";
+    $sql = "insert into resumo (sumario, graduacao1, ano1, nome_graduacao1, cidade_graduacao1, resumo1, graduacao2, ano2, nome_graduacao2, cidade_graduacao2, resumo2)
+     values(:sumario, :graduacao1, :ano1, :nome_graduacao1, :cidade_graduacao1, :resumo1, :graduacao2, :ano2, :nome_graduacao2, :cidade_graduacao2, :resumo2)";
 
     $pdo_statment = $pdo->prepare($sql);
     $result = $pdo_statment->execute(array(
-        ":nome_habilidades" => $_POST["nome_habilidades"],
-        ":nivel" => $_POST["nivel"]
+        ":sumario" => $_POST["sumario"],
+        ":graduacao1" => $_POST["graduacao1"],
+        ":ano1" => $_POST["ano1"],
+        ":nome_graduacao1" => $_POST["nome_graduacao1"],
+        ":cidade_graduacao1" => $_POST["cidade_graduacao1"],
+        ":resumo1" => $_POST["resumo1"],
+        ":graduacao2" => $_POST["graduacao2"],
+        ":ano2" => $_POST["ano2"],
+        ":nome_graduacao2" => $_POST["nome_graduacao2"],
+        ":cidade_graduacao2" => $_POST["cidade_graduacao2"],
+        ":resumo2" => $_POST["resumo2"]
     ));
 
     echo $result;
@@ -18,8 +28,6 @@ if (!empty($_POST["add_resumo"])) {
     }
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +62,7 @@ if (!empty($_POST["add_resumo"])) {
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Registro do Resumo Profissional</h2>
+                    <h2 class="title">Registro do Resumo pessoal e profissional</h2>
                     <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">
@@ -63,16 +71,96 @@ if (!empty($_POST["add_resumo"])) {
                                     <input class="input--style-4" type="text" name="sumario">
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label"></label>
-                                    <input class="input--style-4" type="text" name="">
+                                    <label class="label">Primeira Graduação </label>
+                                    <input class="input--style-4" type="text" name="graduacao1">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ano de conclução</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="ano1">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Nome da Graduação</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="nome_graduacao1">
+                                        <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Cidade</label>
+                                    <input class="input--style-4" type="text" name="cidade_graduacao1">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">Resumo da Graduação</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="resumo1">
+                                        <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Segunda Graduação</label>
+                                    <input class="input--style-4" type="text" name="graduacao2">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Ano de conclusão</label>
+                                    <input class="input--style-4" type="text" name="ano2">
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Nome da Graduação</label>
+                                    <input class="input--style-4" type="text" name="nome_graduacao2">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Cidade da Graduação</label>
+                                    <input class="input--style-4" type="text" name="cidade_graduacao2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <label class="label">Resumo da Segunda Graduação</label>
+                                    <input class="input--style-4" type="text" name="resumo2">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-space">
+                        </div>
 
 
-                        <!-- <div class="input-group">
+                </div>
+
+
+                <!-- <div class="input-group">
                             <label class="label">Subject</label>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <select name="subject">
@@ -84,13 +172,13 @@ if (!empty($_POST["add_resumo"])) {
                                 <div class="select-dropdown"></div>
                             </div>
                         </div> -->
-                        <div class="p-t-15">
-                            <input class="btn btn--radius-2 btn--blue butao" type="submit" name="add_habilidades">
-                        </div>
-                    </form>
+                <div class="p-t-15">
+                    <input class="btn btn--radius-2 btn--blue butao" type="submit" name="add_resumo">
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Jquery JS-->

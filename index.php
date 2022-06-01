@@ -301,7 +301,7 @@ require_once('config.php');
         <!-- ======= Resume Section ======= -->
         <section id="resume" class="resume">
             <?php
-            $pdo_statement = $pdo->prepare("select * from users");
+            $pdo_statement = $pdo->prepare("select u.*, r.* from resumo r, users u");
             $pdo_statement->execute();
             $result = $pdo_statement->fetchAll();
             ?>
@@ -313,7 +313,7 @@ require_once('config.php');
                 ?>
 
                         <div class="section-title">
-                            <h2>Resume</h2>
+                            <h2>Resumo Pessoal</h2>
                             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
                         </div>
 
@@ -322,7 +322,7 @@ require_once('config.php');
                                 <h3 class="resume-title">Sumario</h3>
                                 <div class="resume-item pb-0">
                                     <h4><?php echo $res2['nome']; ?></h4>
-                                    <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
+                                    <p><em><?php echo $res2['sumario'] ?></em></p>
                                     <ul>
                                         <li><?php echo $res2['cidade'] ?></li>
                                         <li><?php echo $res2['telefone']; ?></li>
@@ -332,16 +332,16 @@ require_once('config.php');
 
                                 <h3 class="resume-title">Educação</h3>
                                 <div class="resume-item">
-                                    <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                                    <h5>2015 - 2016</h5>
-                                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                                    <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
+                                    <h4><?php echo $res2['nome_graduacao1'] ?></h4>
+                                    <h5><?php echo $res2['ano1'] ?></h5>
+                                    <p><em><?php echo $res2['graduacao1'] ?>, <?php echo $res2['cidade_graduacao1'] ?></em></p>
+                                    <p><?php echo $res2['resumo1'] ?></p>
                                 </div>
-                                <div class="resume-item">
-                                    <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-                                    <h5>2010 - 2014</h5>
-                                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                                    <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
+                                <div class="resume-item">   
+                                    <h4><?php echo $res2['nome_graduacao2'] ?></h4>
+                                    <h5><?php echo $res2['ano2'] ?></h5>
+                                    <p><em><?php echo $res2['graduacao2'] ?>, <?php echo $res2['cidade_graduacao2'] ?></em></p>
+                                    <p><?php echo $res2['resumo2'] ?></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
