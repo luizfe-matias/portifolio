@@ -386,16 +386,16 @@ require_once('config.php');
                     <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
                         <ul id="portfolio-flters">
                             <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">People</li>
-                            <li data-filter=".filter-card">Camera</li>
-                            <li data-filter=".filter-web">Landscape</li>
+                            <li data-filter=".filter-other">Other</li>
+                            <li data-filter=".filter-nature">Nature</li>
+                            <li data-filter=".filter-landscape">Landscape</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-other">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/Hand.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -409,7 +409,7 @@ require_once('config.php');
                         </div>
                     </div>
                     
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-other">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/motor.jpeg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -422,7 +422,7 @@ require_once('config.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-landscape">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/Purple-sky.JPG" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -435,7 +435,7 @@ require_once('config.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-landscape">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/Field.jpeg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -449,7 +449,7 @@ require_once('config.php');
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-other">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/Street.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -463,9 +463,24 @@ require_once('config.php');
                         </div>
                     </div>
 
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-other">
+                        <div class="portfolio-wrap">
+                            <img src="assets/img/portfolio/Fire.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Profissional</h4>
+                                <p>Canon Sl3</p>
+                                <div class="portfolio-links">
+                                    <a href="assets/img/portfolio/Fire.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Fire"><i class="bx bx-plus"></i></a>
+                                    <!-- <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-landscape">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/Floresta.jpeg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -479,7 +494,7 @@ require_once('config.php');
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-other">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/Train.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -493,7 +508,7 @@ require_once('config.php');
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-nature">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/White-flower.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -507,7 +522,7 @@ require_once('config.php');
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-nature">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/Pink-flower.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
@@ -521,7 +536,35 @@ require_once('config.php');
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-nature">
+                        <div class="portfolio-wrap">
+                            <img src="assets/img/portfolio/Pink-flower2.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Camera</h4>
+                                <p>Canon 70D</p>
+                                <div class="portfolio-links">
+                                    <a href="assets/img/portfolio/Pink-flower2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Pink Flower"><i class="bx bx-plus"></i></a>
+                                    <!-- <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-nature">
+                        <div class="portfolio-wrap">
+                            <img src="assets/img/portfolio/Yellow-flower.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Camera</h4>
+                                <p>Canon 70D</p>
+                                <div class="portfolio-links">
+                                    <a href="assets/img/portfolio/Yellow-flower.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Pink Flower"><i class="bx bx-plus"></i></a>
+                                    <!-- <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-landscape">
                         <div class="portfolio-wrap">
                             <img src="assets/img/portfolio/Sky-fire.jpeg" class="img-fluid" alt="">
                             <div class="portfolio-info">
