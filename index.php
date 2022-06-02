@@ -39,9 +39,10 @@ require_once('config.php');
 <body>
 
     <?php
-    $pdo_statement = $pdo->prepare("select u.*, r.*, f.* from users u, resumo r, fatos f");
+    // $pdo_statement = $pdo->prepare("select u.*, r.*, f.* from users u, resumo r, fatos f");
+    $pdo_statement = $pdo->prepare("select * from users");
     $pdo_statement->execute();
-    $result = $pdo_statement->fetch();
+    $user = $pdo_statement->fetch();
     ?>
     <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
     <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
@@ -66,29 +67,29 @@ require_once('config.php');
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex flex-column justify-content-center">
-        <div class="container" data-aos="zoom-in" data-aos-delay="100">
+        <div class="container">
             <?php
 
-            if (!empty($result)) {
-
+            // $pdo_statement = $pdo->prepare("select u.*, r.*, f.* from users u, resumo r, fatos f");
+            $pdo_statement = $pdo->prepare("select * from resumo");
+            $pdo_statement->execute();
+            $resumo = $pdo_statement->fetch();
             ?>
 
-                <h2 for="nome"><?php echo $result['nome']; ?></h2>
+            <h2 for="nome"><?php echo $user['nome']; ?></h2>
 
 
-                <p><span class="typed" data-typed-items="<?php echo $result['graduacao1'] ?>, <?php echo $result['graduacao2'] ?>"></span></p>
-                <div class="social-links">
-                    <a href="https://twitter.com/LuizFe_Matias" class="twitter"><i class="bx bxl-twitter"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=100069404614319" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="https://www.instagram.com/luizfe_matias/" class="instagram"><i class="bx bxl-instagram"></i></a>
-                    <a href="https://github.com/luizfe-matias/" class="google-plus"><i class="bx bxl-github"></i></a>
-                    <!-- <a href="https://www.youtube.com/channel/UCqn5qmxITNO9E-EN0YM92PA" class="linkedin"><i class="bx bxl-youtube"></i></a> -->
-                </div>
+            <p><span class="typed" data-typed-items="<?php echo $resumo['graduacao1'] ?>, <?php echo $resumo['graduacao2'] ?>"></span></p>
+            <div class="social-links">
+                <a href="https://twitter.com/LuizFe_Matias" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100069404614319" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/luizfe_matias/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://github.com/luizfe-matias/" class="google-plus"><i class="bx bxl-github"></i></a>
+                <!-- <a href="https://www.youtube.com/channel/UCqn5qmxITNO9E-EN0YM92PA" class="linkedin"><i class="bx bxl-youtube"></i></a> -->
+            </div>
         </div>
-    <?php
-            }
 
-    ?>
+
     </section><!-- End Hero -->
 
     <main id="main">
@@ -98,7 +99,7 @@ require_once('config.php');
             <div class="container" data-aos="fade-up">
                 <?php
 
-                if (!empty($result)) {
+                if (!empty($user)) {
                 ?>
 
                     <div class="section-title">
@@ -111,7 +112,7 @@ require_once('config.php');
                             <img src="assets/img/Eu.jpg" class="img-fluid profile" alt="">
                         </div>
                         <div class="col-lg-8 pt-4 pt-lg-0 content">
-                            <h3><?php echo $result['profissao'] ?></h3>
+                            <h3><?php echo $user['profissao'] ?></h3>
                             </br>
                             <!-- <p class="fst-italic">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -123,11 +124,11 @@ require_once('config.php');
 
 
                                         <!-- <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><span><?php echo $result['nascimento'] ?></span></li> -->
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Telefone:</strong> <span><?php echo $result['telefone'] ?></span></li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Cidade:</strong> <span><?php echo $result['cidade'] ?></span></li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Genero:</strong> <span><?php echo $result['genero'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Telefone:</strong> <span><?php echo $user['telefone'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Cidade:</strong> <span><?php echo $user['cidade'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Genero:</strong> <span><?php echo $user['genero'] ?></span></li>
 
-                                        <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><?php echo $result['nascimento'] ?><span></span></li>
+                                        <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><?php echo $user['nascimento'] ?><span></span></li>
 
                                     </ul>
 
@@ -136,16 +137,16 @@ require_once('config.php');
 
 
                                     <ul>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Idade:</strong> <span><?php echo $result['idade'] ?></span></li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Grau:</strong> <span><?php echo $result['grau'] ?></span></li>
-                                        <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo $result['email'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Idade:</strong> <span><?php echo $user['idade'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Grau:</strong> <span><?php echo $user['grau'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo $user['email'] ?></span></li>
                                     </ul>
 
 
                                 </div>
                             </div>
-                            <a href="delete-user.php?id=<?php echo $result["id_user"] ?>" class="btn btn-danger">Delete</a>
-                            <a href="edit-user.php?id=<?php echo $result["id_user"] ?>" class="btn btn-warning">Altera</a>
+                            <a href="delete-user.php?id=<?php echo $user["id_user"] ?>" class="btn btn-danger">Delete</a>
+                            <a href="edit-user.php?id=<?php echo $user["id_user"] ?>" class="btn btn-warning">Altera</a>
                         <?php
                     }
 
@@ -173,14 +174,16 @@ require_once('config.php');
 
                 <div class="row">
                     <?php
-
-                    if (!empty($result)) {
+                    $pdo_statement = $pdo->prepare("select * from fatos");
+                    $pdo_statement->execute();
+                    $fatos = $pdo_statement->fetch();
+                    if (!empty($fatos)) {
 
                     ?>
                         <div class="col-lg-3 col-md-6">
                             <div class="count-box">
                                 <i class="bi bi-emoji-smile"></i>
-                                <span data-purecounter-start="0" data-purecounter-end="<?php echo $result['clientes']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <span data-purecounter-start="0" data-purecounter-end="<?php echo $fatos['clientes']; ?>" data-purecounter-duration="1" class="purecounter"></span>
                                 <p>Clientes Satisfeitos</p>
                             </div>
                         </div>
@@ -188,7 +191,7 @@ require_once('config.php');
                         <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                             <div class="count-box">
                                 <i class="bi bi-journal-richtext"></i>
-                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $result['projetos']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $fatos['projetos']; ?>" data-purecounter-duration="1" class="purecounter"></span>
                                 <p>Projetos</p>
                             </div>
                         </div>
@@ -196,7 +199,7 @@ require_once('config.php');
                         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                             <div class="count-box">
                                 <i class="bi bi-headset"></i>
-                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $result['horas']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $fatos['horas']; ?>" data-purecounter-duration="1" class="purecounter"></span>
                                 <p>Horas de Suporte</p>
                             </div>
                         </div>
@@ -204,14 +207,17 @@ require_once('config.php');
                         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                             <div class="count-box">
                                 <i class="bi bi-award"></i>
-                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $result['conquistas']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $fatos['conquistas']; ?>" data-purecounter-duration="1" class="purecounter"></span>
                                 <p>Conquistas</p>
                             </div>
                         </div>
 
                 </div>
 
+
             </div>
+            <a href="delete-fatos.php?id=<?php echo $fatos["id_fato"] ?>" class="btn btn-danger">Delete</a>
+            <a href="edit-fatos.php?id=<?php echo $fatos["id_fato"] ?>" class="btn btn-warning">Altera</a>
         <?php
                     }
 
@@ -302,47 +308,47 @@ require_once('config.php');
 
         <section id="resume" class="resume">
             <?php
-            $pdo_statement = $pdo->prepare("select u.*, r.* from resumo r, users u");
-            $pdo_statement->execute();
-            $result = $pdo_statement->fetch();
+            // $pdo_statement = $pdo->prepare("select u.*, r.* from resumo r, users u");
+            // $pdo_statement->execute();
+            // $result = $pdo_statement->fetch();
             ?>
             <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Resumo Pessoal</h2>
+                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                </div>
                 <?php
 
-                if (!empty($result)) {
+                if (!empty($resumo)) {
 
                 ?>
-
-                    <div class="section-title">
-                        <h2>Resumo Pessoal</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                    </div>
 
                     <div class="row">
                         <div class="col-lg-6">
                             <h3 class="resume-title">Sumario</h3>
                             <div class="resume-item pb-0">
-                                <h4><?php echo $result['nome']; ?></h4>
-                                <p><em><?php echo $result['sumario'] ?></em></p>
+                                <h4><?php echo $user['nome']; ?></h4>
+                                <p><em><?php echo $resumo['sumario'] ?></em></p>
                                 <ul>
-                                    <li><?php echo $result['cidade'] ?></li>
-                                    <li><?php echo $result['telefone']; ?></li>
-                                    <li><?php echo $result['email']; ?></li>
+                                    <li><?php echo $user['cidade'] ?></li>
+                                    <li><?php echo $user['telefone']; ?></li>
+                                    <li><?php echo $user['email']; ?></li>
                                 </ul>
                             </div>
 
                             <h3 class="resume-title">Educação</h3>
                             <div class="resume-item">
-                                <h4><?php echo $result['nome_graduacao1'] ?></h4>
-                                <h5><?php echo $result['ano1'] ?></h5>
-                                <p><em><?php echo $result['graduacao1'] ?>, <?php echo $result['cidade_graduacao1'] ?></em></p>
-                                <p><?php echo $result['resumo1'] ?></p>
+                                <h4><?php echo $resumo['nome_graduacao1'] ?></h4>
+                                <h5><?php echo $resumo['ano1'] ?></h5>
+                                <p><em><?php echo $resumo['graduacao1'] ?>, <?php echo $resumo['cidade_graduacao1'] ?></em></p>
+                                <p><?php echo $resumo['resumo1'] ?></p>
                             </div>
                             <div class="resume-item">
-                                <h4><?php echo $result['nome_graduacao2'] ?></h4>
-                                <h5><?php echo $result['ano2'] ?></h5>
-                                <p><em><?php echo $result['graduacao2'] ?>, <?php echo $result['cidade_graduacao2'] ?></em></p>
-                                <p><?php echo $result['resumo2'] ?></p>
+                                <h4><?php echo $resumo['nome_graduacao2'] ?></h4>
+                                <h5><?php echo $resumo['ano2'] ?></h5>
+                                <p><em><?php echo $resumo['graduacao2'] ?>, <?php echo $resumo['cidade_graduacao2'] ?></em></p>
+                                <p><?php echo $resumo['resumo2'] ?></p>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -373,7 +379,6 @@ require_once('config.php');
                     </div>
                 <?php
                 }
-
                 ?>
             </div>
         </section><!-- End Resume Section -->
