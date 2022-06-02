@@ -39,9 +39,9 @@ require_once('config.php');
 <body>
 
     <?php
-    $pdo_statement = $pdo->prepare("select u.*, r.* from users u, resumo r");
+    $pdo_statement = $pdo->prepare("select u.*, r.*, f.* from users u, resumo r, fatos f");
     $pdo_statement->execute();
-    $result = $pdo_statement->fetchAll();
+    $result = $pdo_statement->fetch();
     ?>
     <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
     <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
@@ -70,25 +70,25 @@ require_once('config.php');
             <?php
 
             if (!empty($result)) {
-                foreach ($result as $row) {;
+
             ?>
 
-                    <h2 for="nome"><?php echo $row['nome']; ?></h2>
+                <h2 for="nome"><?php echo $result['nome']; ?></h2>
 
 
-                    <p>Eu sou <span class="typed" data-typed-items="<?php echo $row['graduacao1'] ?>, <?php echo $row['graduacao2'] ?>"></span></p>
-                    <div class="social-links">
-                        <a href="https://twitter.com/LuizFe_Matias" class="twitter"><i class="bx bxl-twitter"></i></a>
-                        <a href="https://www.facebook.com/profile.php?id=100069404614319" class="facebook"><i class="bx bxl-facebook"></i></a>
-                        <a href="https://www.instagram.com/luizfe_matias/" class="instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="https://github.com/luizfe-matias/" class="google-plus"><i class="bx bxl-github"></i></a>
-                        <!-- <a href="https://www.youtube.com/channel/UCqn5qmxITNO9E-EN0YM92PA" class="linkedin"><i class="bx bxl-youtube"></i></a> -->
-                    </div>
+                <p><span class="typed" data-typed-items="<?php echo $result['graduacao1'] ?>, <?php echo $result['graduacao2'] ?>"></span></p>
+                <div class="social-links">
+                    <a href="https://twitter.com/LuizFe_Matias" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100069404614319" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://www.instagram.com/luizfe_matias/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="https://github.com/luizfe-matias/" class="google-plus"><i class="bx bxl-github"></i></a>
+                    <!-- <a href="https://www.youtube.com/channel/UCqn5qmxITNO9E-EN0YM92PA" class="linkedin"><i class="bx bxl-youtube"></i></a> -->
+                </div>
         </div>
-<?php
-                }
+    <?php
             }
-?>
+
+    ?>
     </section><!-- End Hero -->
 
     <main id="main">
@@ -96,64 +96,64 @@ require_once('config.php');
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
+                <?php
 
-                <div class="section-title">
-                    <h2>Sobre</h2>
-                    <p>Agora minhas informações pessoais e um resumo sobre minhas qualificações e experiencias</p>
-                </div>
+                if (!empty($result)) {
+                ?>
 
-                <div class="row">
-                    <div class="col-lg-4">
-                        <img src="assets/img/Eu.jpg" class="img-fluid profile" alt="">
+                    <div class="section-title">
+                        <h2>Sobre</h2>
+                        <p>Agora minhas informações pessoais e um resumo sobre minhas qualificações e experiencias</p>
                     </div>
-                    <div class="col-lg-8 pt-4 pt-lg-0 content">
-                        <h3><?php echo $row['profissao'] ?></h3>
-                        </br>
-                        <!-- <p class="fst-italic">
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="assets/img/Eu.jpg" class="img-fluid profile" alt="">
+                        </div>
+                        <div class="col-lg-8 pt-4 pt-lg-0 content">
+                            <h3><?php echo $result['profissao'] ?></h3>
+                            </br>
+                            <!-- <p class="fst-italic">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
                             magna aliqua.
                         </p> -->
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <ul>
-                                    <?php
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <ul>
 
-                                    if (!empty($result)) {
-                                        foreach ($result as $row) {;
-                                    ?>
 
-                                            <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><span><?php echo $row['nascimento'] ?></span></li>
-                                            <li><i class="bi bi-chevron-right"></i> <strong>Telefone:</strong> <span><?php echo $row['telefone'] ?></span></li>
-                                            <li><i class="bi bi-chevron-right"></i> <strong>Cidade:</strong> <span><?php echo $row['cidade'] ?></span></li>
-                                            <li><i class="bi bi-chevron-right"></i> <strong>Genero:</strong> <span><?php echo $row['genero'] ?></span></li>
+                                        <!-- <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><span><?php echo $result['nascimento'] ?></span></li> -->
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Telefone:</strong> <span><?php echo $result['telefone'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Cidade:</strong> <span><?php echo $result['cidade'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Genero:</strong> <span><?php echo $result['genero'] ?></span></li>
 
-                                            <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><?php echo $row['nascimento'] ?><span></span></li>
+                                        <li><i for="nascimento" class="bi bi-chevron-right"></i> <strong>Nascimento:</strong><?php echo $result['nascimento'] ?><span></span></li>
 
-                                </ul>
+                                    </ul>
 
+                                </div>
+                                <div class="col-lg-6">
+
+
+                                    <ul>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Idade:</strong> <span><?php echo $result['idade'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Grau:</strong> <span><?php echo $result['grau'] ?></span></li>
+                                        <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo $result['email'] ?></span></li>
+                                    </ul>
+
+
+                                </div>
                             </div>
-                            <div class="col-lg-6">
+                            <a href="delete-user.php?id=<?php echo $result["id_user"] ?>" class="btn btn-danger">Delete</a>
+                            <a href="edit-user.php?id=<?php echo $result["id_user"] ?>" class="btn btn-warning">Altera</a>
+                        <?php
+                    }
 
-
-                                <ul>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Idade:</strong> <span><?php echo $row['idade'] ?></span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Grau:</strong> <span><?php echo $row['grau'] ?></span></li>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo $row['email'] ?></span></li>
-                                </ul>
-
-
-                            </div>
+                        ?>
                         </div>
-                        <a href="delete-user.php?id=<?php echo $row["id_user"] ?>" class="btn btn-danger">Delete</a>
-                        <a href="edit-user.php?id=<?php echo $row["id_user"] ?>" class="btn btn-warningb">Altera</a>
-                <?php
-                                        }
-                                    }
-                ?>
+
+
                     </div>
-
-
-                </div>
 
             </div>
             <!-- <?php
@@ -163,11 +163,7 @@ require_once('config.php');
 
         <!-- ======= Facts Section ======= -->
         <section id="facts" class="facts">
-            <?php
-            $pdo_statement = $pdo->prepare("select * from fatos");
-            $pdo_statement->execute();
-            $res = $pdo_statement->fetchAll();
-            ?>
+
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
@@ -178,48 +174,48 @@ require_once('config.php');
                 <div class="row">
                     <?php
 
-                    if (!empty($res)) {
-                        foreach ($res as $row) {
+                    if (!empty($result)) {
+
                     ?>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="count-box">
-                                    <i class="bi bi-emoji-smile"></i>
-                                    <span data-purecounter-start="0" data-purecounter-end="<?php echo $row['clientes']; ?>" data-purecounter-duration="1" class="purecounter"></span>
-                                    <p>Clientes Satisfeitos</p>
-                                </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="count-box">
+                                <i class="bi bi-emoji-smile"></i>
+                                <span data-purecounter-start="0" data-purecounter-end="<?php echo $result['clientes']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Clientes Satisfeitos</p>
                             </div>
+                        </div>
 
-                            <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-                                <div class="count-box">
-                                    <i class="bi bi-journal-richtext"></i>
-                                    <span data-purecounter-start="0" data-purecounter-end=" <?php echo $row['projetos']; ?>" data-purecounter-duration="1" class="purecounter"></span>
-                                    <p>Projetos</p>
-                                </div>
+                        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                            <div class="count-box">
+                                <i class="bi bi-journal-richtext"></i>
+                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $result['projetos']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Projetos</p>
                             </div>
+                        </div>
 
-                            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                                <div class="count-box">
-                                    <i class="bi bi-headset"></i>
-                                    <span data-purecounter-start="0" data-purecounter-end=" <?php echo $row['horas']; ?>" data-purecounter-duration="1" class="purecounter"></span>
-                                    <p>Horas de Suporte</p>
-                                </div>
+                        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                            <div class="count-box">
+                                <i class="bi bi-headset"></i>
+                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $result['horas']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Horas de Suporte</p>
                             </div>
+                        </div>
 
-                            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                                <div class="count-box">
-                                    <i class="bi bi-award"></i>
-                                    <span data-purecounter-start="0" data-purecounter-end=" <?php echo $row['conquistas']; ?>" data-purecounter-duration="1" class="purecounter"></span>
-                                    <p>Conquistas</p>
-                                </div>
+                        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                            <div class="count-box">
+                                <i class="bi bi-award"></i>
+                                <span data-purecounter-start="0" data-purecounter-end=" <?php echo $result['conquistas']; ?>" data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Conquistas</p>
                             </div>
+                        </div>
 
                 </div>
 
             </div>
-    <?php
-                        }
+        <?php
                     }
-    ?>
+
+        ?>
         </section><!-- End Facts Section -->
 
         <!-- ======= Skills Section ======= -->
@@ -303,80 +299,81 @@ require_once('config.php');
         </section><!-- End Skills Section -->
 
         <!-- ======= Resume Section ======= -->
+
         <section id="resume" class="resume">
             <?php
             $pdo_statement = $pdo->prepare("select u.*, r.* from resumo r, users u");
             $pdo_statement->execute();
-            $result = $pdo_statement->fetchAll();
+            $result = $pdo_statement->fetch();
             ?>
             <div class="container" data-aos="fade-up">
                 <?php
 
                 if (!empty($result)) {
-                    foreach ($result as $res2) {;
+
                 ?>
 
-                        <div class="section-title">
-                            <h2>Resumo Pessoal</h2>
-                            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                        </div>
+                    <div class="section-title">
+                        <h2>Resumo Pessoal</h2>
+                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h3 class="resume-title">Sumario</h3>
-                                <div class="resume-item pb-0">
-                                    <h4><?php echo $res2['nome']; ?></h4>
-                                    <p><em><?php echo $res2['sumario'] ?></em></p>
-                                    <ul>
-                                        <li><?php echo $res2['cidade'] ?></li>
-                                        <li><?php echo $res2['telefone']; ?></li>
-                                        <li><?php echo $res2['email']; ?></li>
-                                    </ul>
-                                </div>
-
-                                <h3 class="resume-title">Educação</h3>
-                                <div class="resume-item">
-                                    <h4><?php echo $res2['nome_graduacao1'] ?></h4>
-                                    <h5><?php echo $res2['ano1'] ?></h5>
-                                    <p><em><?php echo $res2['graduacao1'] ?>, <?php echo $res2['cidade_graduacao1'] ?></em></p>
-                                    <p><?php echo $res2['resumo1'] ?></p>
-                                </div>
-                                <div class="resume-item">
-                                    <h4><?php echo $res2['nome_graduacao2'] ?></h4>
-                                    <h5><?php echo $res2['ano2'] ?></h5>
-                                    <p><em><?php echo $res2['graduacao2'] ?>, <?php echo $res2['cidade_graduacao2'] ?></em></p>
-                                    <p><?php echo $res2['resumo2'] ?></p>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h3 class="resume-title">Sumario</h3>
+                            <div class="resume-item pb-0">
+                                <h4><?php echo $result['nome']; ?></h4>
+                                <p><em><?php echo $result['sumario'] ?></em></p>
+                                <ul>
+                                    <li><?php echo $result['cidade'] ?></li>
+                                    <li><?php echo $result['telefone']; ?></li>
+                                    <li><?php echo $result['email']; ?></li>
+                                </ul>
                             </div>
-                            <div class="col-lg-6">
-                                <h3 class="resume-title">Professional Experience</h3>
-                                <div class="resume-item">
-                                    <h4>Senior graphic design specialist</h4>
-                                    <h5>2019 - Present</h5>
-                                    <p><em>Experion, New York, NY </em></p>
-                                    <ul>
-                                        <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                                        <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                                        <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                                        <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-                                    </ul>
-                                </div>
-                                <div class="resume-item">
-                                    <h4>Graphic design specialist</h4>
-                                    <h5>2017 - 2018</h5>
-                                    <p><em>Stepping Stone Advertising, New York, NY</em></p>
-                                    <ul>
-                                        <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                                        <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                                        <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                                        <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-                                    </ul>
-                                </div>
+
+                            <h3 class="resume-title">Educação</h3>
+                            <div class="resume-item">
+                                <h4><?php echo $result['nome_graduacao1'] ?></h4>
+                                <h5><?php echo $result['ano1'] ?></h5>
+                                <p><em><?php echo $result['graduacao1'] ?>, <?php echo $result['cidade_graduacao1'] ?></em></p>
+                                <p><?php echo $result['resumo1'] ?></p>
+                            </div>
+                            <div class="resume-item">
+                                <h4><?php echo $result['nome_graduacao2'] ?></h4>
+                                <h5><?php echo $result['ano2'] ?></h5>
+                                <p><em><?php echo $result['graduacao2'] ?>, <?php echo $result['cidade_graduacao2'] ?></em></p>
+                                <p><?php echo $result['resumo2'] ?></p>
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                            <h3 class="resume-title">Professional Experience</h3>
+                            <div class="resume-item">
+                                <h4>Senior graphic design specialist</h4>
+                                <h5>2019 - Present</h5>
+                                <p><em>Experion, New York, NY </em></p>
+                                <ul>
+                                    <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
+                                    <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
+                                    <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
+                                    <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+                                </ul>
+                            </div>
+                            <div class="resume-item">
+                                <h4>Graphic design specialist</h4>
+                                <h5>2017 - 2018</h5>
+                                <p><em>Stepping Stone Advertising, New York, NY</em></p>
+                                <ul>
+                                    <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
+                                    <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
+                                    <li>Recommended and consulted with clients on the most appropriate graphic design</li>
+                                    <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 <?php
-                    }
                 }
+
                 ?>
             </div>
         </section><!-- End Resume Section -->

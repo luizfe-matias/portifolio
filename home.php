@@ -41,7 +41,7 @@ require_once('config.php');
 
     <?php
     $pdo_statement = $pdo->prepare("select * from users where id_user = ?");
-    $result = $pdo_statement->execute([$_SESSION["id_user"]]);
+    $result = $pdo_statement->execute([$_SESSION["nome"]]);
     $result = $pdo_statement->fetchAll();
     ?>
     
@@ -60,7 +60,7 @@ require_once('config.php');
 
             </ul>
         </nav>
-        <h2><?php echo $result['nome'] ?></h2>
+        <!-- <h2><?php echo $result['nome'] ?></h2> -->
     </header>
     <!-- End Header -->
 

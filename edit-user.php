@@ -2,7 +2,7 @@
 
 require_once("config.php");
 
-if (!empty($_POST["edit_users"])) {
+if (!empty($_POST["edit_user"])) {
     $pdo_statement = $pdo->prepare("update users set nome = " . $_POST['nome']
         . ", cidade = " . $_POST['cidade'] .
         ", nascimento = " . $_POST['nascimento'] . 
@@ -10,7 +10,7 @@ if (!empty($_POST["edit_users"])) {
         ", email = " . $_POST['email'] . 
         ", telefone = " . $_POST['telefone'] . 
         ", grau = " . $_POST['grau'] .
-        ", profissao =" . $_POST['idade'] .
+        ", profissao =" . $_POST['profissao'] .
         ", password = " . $_POST['password'] .
         "where id_user = " . $_GET['id']);
 
@@ -64,13 +64,13 @@ $result = $pdo_statement->fetchAll();
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Nome</label>
-                                    <input class="input--style-4" type="text" name="nome">
+                                    <input class="input--style-4" value="<?php echo $result[0]['nome'] ?>" type="text" name="nome">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Cidade</label>
-                                    <input class="input--style-4" type="text" name="cidade">
+                                    <input class="input--style-4" type="text" value="<?php echo $result[0]['cidade'] ?>" name="cidade">
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@ $result = $pdo_statement->fetchAll();
                                 <div class="input-group">
                                     <label class="label">Nascimento</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="nascimento">
+                                        <input class="input--style-4 js-datepicker" value="<?php echo $result[0]['nascimento'] ?>" type="text" name="nascimento">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@ $result = $pdo_statement->fetchAll();
                                 <div class="input-group">
                                     <label class="label">Genero</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="genero">
+                                        <input class="input--style-4 js-datepicker" value="<?php echo $result[0]['genero'] ?>" type="text" name="genero">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -98,13 +98,13 @@ $result = $pdo_statement->fetchAll();
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" name="email">
+                                    <input class="input--style-4" value="<?php echo $result[0]['email'] ?>" type="email" name="email">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Número de Telefone</label>
-                                    <input class="input--style-4" type="text" name="telefone">
+                                    <input class="input--style-4" type="text" value="<?php echo $result[0]['telefone'] ?>" name="telefone">
                                 </div>
                             </div>
                         </div>
@@ -112,19 +112,19 @@ $result = $pdo_statement->fetchAll();
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Grau</label>
-                                    <input class="input--style-4" type="text" name="grau">
+                                    <input class="input--style-4" type="text" value="<?php echo $result[0]['grau'] ?>" name="grau">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Profissão</label>
-                                    <input class="input--style-4" type="text" name="profissao">
+                                    <input class="input--style-4" type="text" value="<?php echo $result[0]['profissao'] ?>" name="profissao">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Idade</label>
-                                    <input class="input--style-4" type="text" name="idade">
+                                    <input class="input--style-4" type="text" value="<?php echo $result[0]['idade'] ?>" name="idade">
                                 </div>
                             </div>
                         </div>
@@ -135,13 +135,13 @@ $result = $pdo_statement->fetchAll();
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Senha</label>
-                                    <input class="input--style-4" type="password" name="password">
+                                    <input class="input--style-4" type="password" value="<?php echo $result[0]['password'] ?>" name="password">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Confirme sua Senha</label>
-                                    <input class="input--style-4" type="password" name="confirm_password">
+                                    <input class="input--style-4" type="password" value="<?php echo $result[0]['password'] ?>" name="confirm_password">
                                 </div>
                             </div>
                         </div>
@@ -160,7 +160,7 @@ $result = $pdo_statement->fetchAll();
                             </div>
                         </div> -->
                 <div class="p-t-15">
-                    <input class="btn btn--radius-2 btn--blue butao" type="submit" name="add_user">
+                    <input class="btn btn--radius-2 btn--blue butao" value="Atualizar" type="submit" name="edit_user">
                 </div>
                 </form>
             </div>
