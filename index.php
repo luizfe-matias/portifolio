@@ -39,7 +39,7 @@ require_once('config.php');
 <body>
 
     <?php
-    $pdo_statement = $pdo->prepare("select * from users");
+    $pdo_statement = $pdo->prepare("select u.*, r.* from users u, resumo r");
     $pdo_statement->execute();
     $result = $pdo_statement->fetchAll();
     ?>
@@ -75,19 +75,20 @@ require_once('config.php');
 
                     <h2 for="nome"><?php echo $row['nome']; ?></h2>
 
-            <?php
+
+                    <p>Eu sou <span class="typed" data-typed-items="<?php echo $row['graduacao1'] ?>, <?php echo $row['graduacao2'] ?>"></span></p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/LuizFe_Matias" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100069404614319" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        <a href="https://www.instagram.com/luizfe_matias/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        <a href="https://github.com/luizfe-matias/" class="google-plus"><i class="bx bxl-github"></i></a>
+                        <!-- <a href="https://www.youtube.com/channel/UCqn5qmxITNO9E-EN0YM92PA" class="linkedin"><i class="bx bxl-youtube"></i></a> -->
+                    </div>
+        </div>
+<?php
                 }
             }
-            ?>
-            <p>Eu sou <span class="typed" data-typed-items="Designer, Desenvolvedor, Fotógrafo"></span></p>
-            <div class="social-links">
-                <a href="https://twitter.com/LuizFe_Matias" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100069404614319" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="https://www.instagram.com/luizfe_matias/" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="https://github.com/luizfe-matias/" class="google-plus"><i class="bx bxl-github"></i></a>
-                <!-- <a href="https://www.youtube.com/channel/UCqn5qmxITNO9E-EN0YM92PA" class="linkedin"><i class="bx bxl-youtube"></i></a> -->
-            </div>
-        </div>
+?>
     </section><!-- End Hero -->
 
     <main id="main">
@@ -143,12 +144,15 @@ require_once('config.php');
 
                             </div>
                         </div>
-
+                        <a href="delete-user.php?id=<?php echo $row["id_user"] ?>" class="btn btn-danger">Delete</a>
+                        <a href="edit-user.php?id=<?php echo $row["id_user"] ?>" class="btn btn-warningb">Altera</a>
                 <?php
                                         }
                                     }
                 ?>
                     </div>
+
+
                 </div>
 
             </div>
@@ -337,7 +341,7 @@ require_once('config.php');
                                     <p><em><?php echo $res2['graduacao1'] ?>, <?php echo $res2['cidade_graduacao1'] ?></em></p>
                                     <p><?php echo $res2['resumo1'] ?></p>
                                 </div>
-                                <div class="resume-item">   
+                                <div class="resume-item">
                                     <h4><?php echo $res2['nome_graduacao2'] ?></h4>
                                     <h5><?php echo $res2['ano2'] ?></h5>
                                     <p><em><?php echo $res2['graduacao2'] ?>, <?php echo $res2['cidade_graduacao2'] ?></em></p>

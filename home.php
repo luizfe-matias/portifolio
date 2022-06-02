@@ -41,8 +41,8 @@ require_once('config.php');
 
     <?php
     $pdo_statement = $pdo->prepare("select * from users where id_user = ?");
-    $result = $pdo_statement->execute([$_SESSION["id"]]);
-    // $result = $pdo_statement->fetch(PDO::FETCH_ASSOC);
+    $result = $pdo_statement->execute([$_SESSION["id_user"]]);
+    $result = $pdo_statement->fetchAll();
     ?>
     
     <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
@@ -54,13 +54,13 @@ require_once('config.php');
             <ul>
                 <li><a href="register.php" class="nav-link scrollto active"><i class="bx bx-envelope"></i><span>Registrar Portifólio Profissional</span></a></li>
                 <li><a href="register-fatos.php" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Registrar Fatos Profissionais</span></a></li>
-                <li><a href="register-habilidades.php" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Registrar Habilidades Profissionais</span></a></li>
+                <li><a href="register-habilidades.php" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Registrar Habilidades Profissionais</span></a></li>
                 <li><a href="register-resumo.php" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Registrar Resumo Profissional</span></a></li>
                 <li><a href="index.php" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Portifólio</span></a></li>
 
             </ul>
         </nav>
-        <h2><?php echo $result[0]['username'] ?></h2>
+        <h2><?php echo $result['nome'] ?></h2>
     </header>
     <!-- End Header -->
 
