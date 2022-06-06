@@ -380,6 +380,8 @@ require_once('config.php');
                 <?php
                 }
                 ?>
+                <a href="delete-resumo.php?id=<?php echo $resumo["id_resumo"] ?>" class="btn btn-danger">Delete</a>
+                <a href="edit-resumo.php?id=<?php echo $resumo["id_resumo"] ?>" class="btn btn-warning">Altera</a>
             </div>
         </section><!-- End Resume Section -->
 
